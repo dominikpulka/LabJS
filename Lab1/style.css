@@ -1,0 +1,14 @@
+body{
+    background: lightgray;
+}
+#box{
+    width: 600px;
+    height: 400px;    
+    margin: 50px auto;
+}
+.pink {
+    background: lightpink;
+}
+.green {
+    background: lightgreen;
+}

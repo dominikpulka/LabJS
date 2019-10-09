@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Drum Kit</title>    
+</head>
+<body>
+    <button id="ch1Rec">rec</button>
+    <button id="ch1Play">play</button>
+    <audio src="sounds/boom.wav" controls></audio>
+    <audio src="sounds/clap.wav" controls id="clap"></audio>
+    <script type="text/javascript">
+    let Rec, Play
+    document
+    .querySelector('#ch1Rec')
+    .addEventListener('click', recSound)
+    document
+    .querySelector('#ch1Play')
+    .addEventListener('click', playSound)
+    function recSound(e){
+        ch1Rec = Date.now()
+    }
+    const clapSound = document.querySelector('#clap')
+    const channel1 = []
+    document.body.addEventListener('keypress', playAudio)
+
+    function playAudio (e){
+        switch(e.code){
+            case 'KeyE':
+                clapSound.currentTime = 0
+                clapSound.play()
+                const time = Date.now()
+                channel1.push({
+                    code: e.code,
+                    time: time
+                })
+                break
+        }            
+        
+    }
+    </script>
+</body>
+</html>
