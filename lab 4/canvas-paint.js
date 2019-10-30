@@ -8,6 +8,12 @@ function appStart() {
     document
         .querySelector('#darken')
         .addEventListener('click', () => darkenFilter())
+    document
+        .querySelector('#lighter')
+        .addEventListener('click', () => lightFilter())
+    document
+        .querySelector('#Test')
+        .addEventListener('click', () => TestFilter())
     ctx = canvas.getContext('2d')
     //ctx.rect(50,50,300,200)
     //ctx.fill()
@@ -23,9 +29,30 @@ function drawImage() {
     })
 }
 function darkenFilter(amount = 30){
-    const canvasData = ctx.getImageData(0, 0, 300, 200)    
-    for( let i = 0 ; i < canvasData.data.length; i++){
+    const canvasData = ctx.getImageData(0, 0, 500, 300)    
+    for( let i = 0 ; i < canvasData.data.length; i+=4){
         canvasData.data[i] -=amount
+        canvasData.data[i+1] -=amount
+        canvasData.data[i+2] -=amount
+        //canvasData.data[i+3] -=amount
+        //canvasData.data[i+4] -=amount bardziej zielone :)
+    }
+    ctx.putImageData(canvasData, 0, 0)    
+}
+function lightFilter(amount = 30){
+    const canvasData = ctx.getImageData(0, 0, 500, 300)    
+    for( let i = 0 ; i < canvasData.data.length; i+=4){
+        canvasData.data[i] -=amount
+        canvasData.data[i+1] -=amount
+        canvasData.data[i+2] -=amount
+        canvasData.data[i+3] -=amount
+    }
+    ctx.putImageData(canvasData, 0, 0)    
+}
+function TestFilter(amount = 30){
+    const canvasData = ctx.getImageData(0, 0, 500, 300)    
+    for( let i = 0 ; i < canvasData.data.length; i++){
+        canvasData.data[i-2/2] -=amount            
     }
     ctx.putImageData(canvasData, 0, 0)    
 }
